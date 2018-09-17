@@ -1,2 +1,2 @@
 # project-base
-projeto base Java com login com spring-security
+projeto basico utilizando Java + spring-security 
