@@ -2,6 +2,7 @@ package br.com.rodrigosampler.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import javax.activation.MimetypesFileTypeMap;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.rodrigosampler.model.Papel;
 import br.com.rodrigosampler.model.Usuario;
+import br.com.rodrigosampler.service.LoginFacebook;
 import br.com.rodrigosampler.service.UsuarioService;
 import br.com.rodrigosampler.util.Constants;
 
@@ -42,6 +44,34 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService usuarioService;
+	
+	@Autowired
+	private LoginFacebook loginFacebook;
+
+	/**
+	 * Método que chama URL do facebook onde o usuário poderá autorizar a aplicação
+	 * a acessar seus recursos privados.
+	 * @return
+	 */
+	@RequestMapping(path="/loginfb")
+	public String logarComFacebook(){
+		return "redirect:"+loginFacebook.getLoginRedirectURL();
+	}
+
+	/**
+	 * Executado quando o Servidor de Autorização fizer o redirect.
+	 * @param 
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	@RequestMapping(path="/loginfbresponse")
+	public String logarComFacebook(String code) throws MalformedURLException, IOException{
+		
+		loginFacebook.obterUsuarioFacebook(code);
+		
+		return "redirect:/";
+	}
 	
 	@GetMapping(path="/meus_eventos")
 	public ModelAndView meusEventos(){

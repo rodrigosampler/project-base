@@ -16,34 +16,6 @@ import br.com.rodrigosampler.service.LoginFacebook;
 @RequestMapping(path="/")
 public class principalController {
 	
-	@Autowired
-	private LoginFacebook loginFacebook;
-
-	/**
-	 * Método que chama URL do facebook onde o usuário poderá autorizar a aplicação
-	 * a acessar seus recursos privados.
-	 * @return
-	 */
-	@RequestMapping("loginfb")
-	public String logarComFacebook(){
-		return "redirect:"+loginFacebook.getLoginRedirectURL();
-	}
-
-	/**
-	 * Executado quando o Servidor de Autorização fizer o redirect.
-	 * @param 
-	 * @return
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 */
-	@RequestMapping("loginfbresponse")
-	public String logarComFacebook(String code) throws MalformedURLException, IOException{
-		
-		loginFacebook.obterUsuarioFacebook(code);
-		
-		return "redirect:/";
-	}
-	
 	@RequestMapping(path="")
 	public ModelAndView loginUsuario() {
 		ModelAndView model = new ModelAndView("formLoginUsuario");

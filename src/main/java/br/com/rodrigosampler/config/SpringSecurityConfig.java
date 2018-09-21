@@ -9,11 +9,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.bind.annotation.RestController;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableAuthorizationServer
 @EnableWebSecurity
+@RestController
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -30,7 +32,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         	.antMatchers("/css/**", "/js/**", "/images/**", "/plugins/**", "/bootstrap/**", "/less/**").permitAll()
             .antMatchers("/usuario/cadastrar", "/usuario/starter", "/usuario/recuperarsenha",
-            		"/usuario/alterarsenha/**", "/usuario/novasenha").permitAll()
+            		"/usuario/alterarsenha/**", "/usuario/novasenha", "/usuario/loginfb", "/usuario/loginfbresponse" ).permitAll()
             .anyRequest().authenticated()
 
             .and()

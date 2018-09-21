@@ -18,5 +18,5 @@ public class DadosDaAppNoFacebook {
 	/**
 	 * Coloque aqui a url do servidor q voce esta rodando esse projeto
 	 */
-	public static final String REDIRECT_URI = "http://localhost:8080/usuario/meus_eventos";
+	public static final String REDIRECT_URI = "https://localhost:8443/usuario/loginfbresponse";
 }

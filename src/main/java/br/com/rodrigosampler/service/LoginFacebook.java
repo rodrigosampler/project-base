@@ -69,7 +69,7 @@ public class LoginFacebook {
 	public String getLoginRedirectURL() {
 		return "https://graph.facebook.com/oauth/authorize?client_id="
 				+ DadosDaAppNoFacebook.CLIENT_ID + "&display=page&redirect_uri=" + DadosDaAppNoFacebook.REDIRECT_URI
-				+ "&scope=email,publish_actions";
+				+ "&scope=email";
 	}
 
 	public String getAuthURL(String authCode) {
